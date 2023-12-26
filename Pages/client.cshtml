@@ -1,0 +1,32 @@
+﻿@page
+@model Food_Donation_App.Pages.clientModel
+@{
+}
+<br />
+<h2>List of users</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Username</th>
+            <th>Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model.ListClient)
+        {
+            <tr>
+                <td>@client.Id</td>
+                <td>@client.Name</td>
+                <td>@client.email</td>
+                <td>@client.phone</td>
+                <td>@client.username</td>
+                <td>@client.password</td>
+            </tr>
+        }
+    </tbody>
+</table>

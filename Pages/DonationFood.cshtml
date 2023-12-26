@@ -1,0 +1,115 @@
+﻿@page
+@model Food_Donation_App.Pages.DonationFoodModel
+@{
+    ViewData["Title"] = "Omani Charitable Organizations - Food_Donation_App";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Food_Donation_App.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Omani Charitable Organizations</h2>
+
+        <p>Discover the charitable organizations in Oman that are actively working to make a positive impact on the community. Your support can contribute to their noble causes and help those in need.</p>
+
+        <!-- Card for Omani Charity Foundation -->
+        <div class="card mt-4 clickable" data-toggle="modal" data-target="#donationModal" data-organization="Omani Charity Foundation" onclick="showDonationModal('Omani Charity Foundation')">
+            <div class="card-body">
+                <h5 class="card-title">Omani Charity Foundation</h5>
+                <p class="card-text">A foundation dedicated to providing healthcare, education, and community development support across Oman.</p>
+            </div>
+        </div>
+
+        <div class="card mt-4" onclick="showDonationModal('Oman Relief Society')">
+            <div class="card-body">
+                <h5 class="card-title">Oman Relief Society</h5>
+                <p class="card-text">Focused on humanitarian relief efforts, including aid for disaster-affected areas and assistance to vulnerable populations.</p>
+            </div>
+        </div>
+
+        <div class="card mt-4" onclick="showDonationModal('Omani Food Bank')">
+            <div class="card-body">
+                <h5 class="card-title">Omani Food Bank</h5>
+                <p class="card-text">Working towards eliminating hunger by collecting and distributing food to those in need across the country.</p>
+            </div>
+        </div>
+
+        <!-- Add more cards for additional charitable organizations -->
+
+    </div>
+
+    <!-- Donation Modal -->
+    
+    <div class="modal fade" id="donationModal" tabindex="-1" role="dialog" aria-labelledby="donationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="donationModalLabel">Choose the Type of Donation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Selected Organization: <span id="selectedOrganization" class="choseone"></span></p>
+                    <p>Select the type of donation you want to make:</p>
+                    <div class="btn-group" role="group" aria-label="Donation Type">
+                        <button type="button" class="btn btn-outline-primary" onclick="selectDonationType('Food')">Food</button>
+                        <button type="button" class="btn btn-outline-primary" onclick="selectDonationType('Cloth')">Cloth</button>
+                        <button type="button" class="btn btn-outline-primary" onclick="selectDonationType('Money')">Money</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closepage()">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="makeDonation()">Donate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        function selectDonationType(type) {
+            document.getElementById('selectedDonationType').innerText = type;
+        }
+
+        function makeDonation() {
+            var organization = document.getElementById('selectedOrganization').innerText;
+            var donationType = document.getElementById('selectedDonationType').innerText;
+            // Add your logic for processing the donation here
+            alert("Donation made to " + organization + " - Type: " + donationType);
+            // You can redirect or perform further actions as needed
+        }
+
+        function closepage() {
+            $('#donationModal').modal('hide');
+        }
+    </script>
+
+    <script>
+        // Function to show the modal
+        function showDonationModal(organization) {
+            $('#donationModal').modal('show');
+            $('.choseone').text(organization);
+        }
+
+        // Example: Call the function to show the modal
+        // You can trigger this function based on a user action, such as a button click
+        // For example, you can add onclick="showDonationModal()" to a button element.
+        // Alternatively, you can call this function in response to some other event.
+        showDonationModal();
+    </script>
+
+
+</body>
+</html>
